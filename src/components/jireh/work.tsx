@@ -54,7 +54,7 @@ export function Work() {
             <span className="gradient-accent">measurable outcomes.</span>
           </h2>
           <p className="mt-4 text-fog leading-relaxed">
-            A snapshot of recent engagements across our three pillars — each shipped in
+            A snapshot of recent engagements across our three pillars, each shipped in
             weeks, not quarters, and instrumented from day one.
           </p>
         </div>

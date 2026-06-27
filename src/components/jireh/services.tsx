@@ -24,7 +24,7 @@ const SERVICES = [
     pillar: "Pillar 02",
     title: "Marketing & Branding",
     desc:
-      "Brand rebuilds, identity systems, SEO infrastructure, content engines, and performance ad campaigns engineered to grow online revenue — not just traffic.",
+      "Brand rebuilds, identity systems, SEO infrastructure, content engines, and performance ad campaigns engineered to grow online revenue, not just traffic.",
     accent: "cyan" as const,
     icon: PenTool,
     bullets: ["Brand identity rebuilds", "SEO systems & content", "Paid acquisition"],
@@ -60,7 +60,7 @@ export function Services() {
               <span className="gradient-accent">delivery engine.</span>
             </h2>
             <p className="mt-4 text-fog leading-relaxed">
-              We don't sell isolated deliverables. Each pillar is structured to compound —
+              We don't sell isolated deliverables. Each pillar is structured to compound:
               faster sites convert better, sharper brands earn trust, and automation keeps
               the system running while you scale.
             </p>

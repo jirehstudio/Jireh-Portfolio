@@ -29,7 +29,7 @@ export function Contact() {
             </h2>
             <p className="mt-4 text-fog leading-relaxed max-w-md">
               Tell us what you're trying to ship. We'll come back within one business day
-              with a fixed-scope discovery proposal — no decks, no sales calls.
+              with a fixed-scope discovery proposal, with no decks or sales calls.
             </p>
 
             <div className="mt-8 space-y-3">

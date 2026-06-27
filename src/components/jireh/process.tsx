@@ -28,7 +28,7 @@ const STEPS = [
     no: "04",
     title: "Launch",
     icon: Rocket,
-    desc: "We deploy, monitor, and execute the first optimization cycle. Then we hand over the keys — and stay on call.",
+    desc: "We deploy, monitor, and execute the first optimization cycle. Then we hand over the keys and stay on call.",
     duration: "Week 4–6",
   },
 ];
@@ -100,7 +100,7 @@ export function Process() {
             </div>
             <p className="mt-2 text-sm text-fog max-w-xl">
               Fixed-scope kickoff, weekly demos, and a written handover. We don't
-              disappear after launch — you keep the dashboard, the docs, and the team.
+              disappear after launch: you keep the dashboard, the docs, and the team.
             </p>
           </div>
           <a href="#contact" className="btn-primary whitespace-nowrap">

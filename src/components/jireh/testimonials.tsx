@@ -14,7 +14,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "The marketing engine they built isn't a campaign — it's infrastructure. We went from unpredictable pipeline to a steady 3x lift in qualified leads across every market.",
+      "The marketing engine they built isn't a campaign; it's infrastructure. We went from unpredictable pipeline to a steady 3x lift in qualified leads across every market.",
     name: "Brian Zakin",
     role: "CTO, Solstice Commerce",
     initials: "BZ",

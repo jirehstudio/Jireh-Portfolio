@@ -66,7 +66,7 @@ export function Comparison() {
             <span className="gradient-accent">three pillars, no retainer lock-in.</span>
           </h2>
           <p className="mt-4 text-fog leading-relaxed">
-            Most agencies sell you one thing — a website, a campaign, a dashboard — then
+            Most agencies sell you one thing, like a website, a campaign, or a dashboard, then
             charge you forever to maintain it. We deliver all three pillars as a single
             engagement and hand you the keys.
           </p>

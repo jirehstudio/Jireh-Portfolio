@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -77,7 +77,6 @@ export function Hero() {
         {/* Trusted-by strip */}
         <div className="mt-20 sm:mt-28">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-fog mb-5">
-            <Sparkles className="h-3.5 w-3.5 text-cyan" />
             <span>Trusted by founders &amp; operators across</span>
             <div className="flex-1 h-px bg-line" />
           </div>

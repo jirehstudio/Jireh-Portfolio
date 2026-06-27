@@ -43,7 +43,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* ireh brand palette */
+  /* jireh brand palette */
   --color-ink: #0a0a0b;
   --color-ink-2: #101013;
   --color-ink-3: #15151a;

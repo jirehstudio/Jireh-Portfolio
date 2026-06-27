@@ -37,7 +37,7 @@ export function Hero() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base sm:text-lg text-fog leading-relaxed">
-              ireh Studio is a digital agency that designs, builds, and optimizes
+              Jireh Studio is a digital agency that designs, builds, and optimizes
               high-performance online systems. We blend web development, integrated
               marketing, and intelligent automation into one delivery engine.
             </p>

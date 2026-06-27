@@ -5,7 +5,7 @@ import { Quote, Star } from "lucide-react";
 const TESTIMONIALS = [
   {
     quote:
-      "ireh Studio rebuilt our storefront from the ground up. Our LCP dropped to under a second and conversions jumped 38% in the first month. They treated our brand like their own.",
+      "Jireh Studio rebuilt our storefront from the ground up. Our LCP dropped to under a second and conversions jumped 38% in the first month. They treated our brand like their own.",
     name: "Sarah Chen",
     role: "CEO, Northwind FinTech",
     initials: "SC",

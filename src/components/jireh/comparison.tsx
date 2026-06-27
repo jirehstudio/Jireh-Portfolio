@@ -5,52 +5,52 @@ import { Check, X } from "lucide-react";
 const ROWS = [
   {
     label: "Custom-designed website or storefront",
-    ireh: true,
+    jireh: true,
     typical: "~",
   },
   {
     label: "Core Web Vitals tuning (LCP < 1s target)",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "Conversion-rate optimization & A/B framework",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "Brand identity & design system rebuild",
-    ireh: true,
+    jireh: true,
     typical: "~",
   },
   {
     label: "SEO infrastructure + content engine",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "Workflow automation & pipeline rules",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "Monitoring dashboards & alerting",
-    ireh: true,
+    jireh: true,
     typical: "~",
   },
   {
     label: "Fixed-scope kickoff, weekly demos",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "First milestone in 4–6 weeks",
-    ireh: true,
+    jireh: true,
     typical: false,
   },
   {
     label: "Long-term retainer lock-in",
-    ireh: false,
+    jireh: false,
     typical: true,
   },
 ];
@@ -60,7 +60,7 @@ export function Comparison() {
     <section className="relative py-24 sm:py-32">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="max-w-2xl mb-14">
-          <span className="eyebrow-accent">Why ireh</span>
+          <span className="eyebrow-accent">Why Jireh</span>
           <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
             <span className="gradient-text">One team, </span>
             <span className="gradient-accent">three pillars, no retainer lock-in.</span>
@@ -79,7 +79,7 @@ export function Comparison() {
               <span className="eyebrow">Capability</span>
             </div>
             <div className="p-5 sm:p-6 border-b border-l border-line bg-cyan/[0.04]">
-              <div className="font-display text-sm font-semibold text-cyan">ireh Studio</div>
+              <div className="font-display text-sm font-semibold text-cyan">Jireh Studio</div>
               <div className="text-[10px] text-fog uppercase tracking-wider mt-0.5">Full system</div>
             </div>
             <div className="p-5 sm:p-6 border-b border-l border-line">
@@ -102,7 +102,7 @@ export function Comparison() {
                     i === ROWS.length - 1 ? "" : "border-b border-line/60"
                   }`}
                 >
-                  <Mark value={r.ireh} />
+                  <Mark value={r.jireh} />
                 </div>
                 <div
                   className={`p-4 sm:p-5 border-l border-line/60 ${

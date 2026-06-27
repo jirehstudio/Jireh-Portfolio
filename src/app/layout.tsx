@@ -17,11 +17,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "ireh Studio — Crafting Digital Excellence",
+  title: "Jireh Studio — Crafting Digital Excellence",
   description:
-    "ireh Studio is a digital agency that designs, builds, and optimizes high-performance online systems. Web development & UI/UX, marketing & branding, and automation services.",
+    "Jireh Studio is a digital agency that designs, builds, and optimizes high-performance online systems. Web development & UI/UX, marketing & branding, and automation services.",
   keywords: [
-    "ireh Studio",
+    "Jireh Studio",
     "Web Development",
     "UI/UX Design",
     "SEO",
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
     "Branding",
     "Digital Agency",
   ],
-  authors: [{ name: "ireh Studio" }],
+  authors: [{ name: "Jireh Studio" }],
   openGraph: {
-    title: "ireh Studio — Crafting Digital Excellence",
+    title: "Jireh Studio — Crafting Digital Excellence",
     description:
       "Your partner in web development, integrated marketing, and intelligent automation.",
-    siteName: "ireh Studio",
+    siteName: "Jireh Studio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ireh Studio — Crafting Digital Excellence",
+    title: "Jireh Studio — Crafting Digital Excellence",
     description:
       "Your partner in web development, integrated marketing, and intelligent automation.",
   },

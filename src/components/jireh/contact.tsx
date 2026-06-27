@@ -32,7 +32,7 @@ export function Contact() {
             </p>
 
             <div className="mt-8 space-y-3">
-              <ContactRow icon={Mail} label="Email" value="hello@ireh.studio" />
+              <ContactRow icon={Mail} label="Email" value="hello@jireh.studio" />
               <ContactRow icon={MapPin} label="Studio" value="Remote · APAC · EMEA · AMER" />
               <ContactRow icon={Clock} label="Response" value="Within 1 business day" />
             </div>
@@ -60,7 +60,7 @@ export function Contact() {
                   </h3>
                   <p className="mt-2 text-sm text-fog max-w-sm">
                     We'll review your scope and reply within one business day. Check
-                    your inbox for a confirmation from hello@ireh.studio.
+                    your inbox for a confirmation from hello@jireh.studio.
                   </p>
                   <button
                     onClick={() => {

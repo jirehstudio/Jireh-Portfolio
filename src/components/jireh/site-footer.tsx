@@ -42,10 +42,10 @@ export function SiteFooter() {
           <div className="lg:col-span-5">
             <a href="#top" className="flex items-center gap-2">
               <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-md border border-cyan/60 bg-ink-2">
-                <span className="font-display text-cyan text-sm font-bold">i</span>
+                <span className="font-display text-cyan text-sm font-bold">j</span>
               </span>
               <span className="font-display text-base font-semibold tracking-tight text-white">
-                ireh<span className="text-cyan">.</span>studio
+                jireh<span className="text-cyan">.</span>studio
               </span>
             </a>
             <p className="mt-4 max-w-sm text-sm text-fog leading-relaxed">
@@ -83,7 +83,7 @@ export function SiteFooter() {
 
         <div className="mt-12 pt-6 border-t border-line flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="text-xs text-fog">
-            © {new Date().getFullYear()} ireh Studio. All rights reserved.
+            © {new Date().getFullYear()} Jireh Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <a href="#" className="text-xs text-fog hover:text-white transition-colors">

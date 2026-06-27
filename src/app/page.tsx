@@ -1,12 +1,12 @@
-import { SiteHeader } from "@/components/ireh/site-header";
-import { Hero } from "@/components/ireh/hero";
-import { Services } from "@/components/ireh/services";
-import { Work } from "@/components/ireh/work";
-import { Comparison } from "@/components/ireh/comparison";
-import { Process } from "@/components/ireh/process";
-import { Testimonials } from "@/components/ireh/testimonials";
-import { Contact } from "@/components/ireh/contact";
-import { SiteFooter } from "@/components/ireh/site-footer";
+import { SiteHeader } from "@/components/jireh/site-header";
+import { Hero } from "@/components/jireh/hero";
+import { Services } from "@/components/jireh/services";
+import { Work } from "@/components/jireh/work";
+import { Comparison } from "@/components/jireh/comparison";
+import { Process } from "@/components/jireh/process";
+import { Testimonials } from "@/components/jireh/testimonials";
+import { Contact } from "@/components/jireh/contact";
+import { SiteFooter } from "@/components/jireh/site-footer";
 
 export default function Page() {
   return (

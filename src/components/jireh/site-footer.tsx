@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Linkedin, Twitter, Github, ArrowUp } from "lucide-react";
 
 const FOOTER_LINKS = [
@@ -40,13 +41,14 @@ export function SiteFooter() {
         <div className="grid lg:grid-cols-12 gap-10">
           {/* Brand block */}
           <div className="lg:col-span-5">
-            <a href="#top" className="flex items-center gap-2">
-              <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-md border border-cyan/60 bg-ink-2">
-                <span className="font-display text-cyan text-sm font-bold">j</span>
-              </span>
-              <span className="font-display text-base font-semibold tracking-tight text-white">
-                jireh<span className="text-cyan">.</span>studio
-              </span>
+            <a href="#top" className="flex items-center gap-2 group">
+              <Image
+                src="/jireh-logo.png"
+                alt="Jireh"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+              />
             </a>
             <p className="mt-4 max-w-sm text-sm text-fog leading-relaxed">
               A digital agency that designs, builds, and optimizes high-performance

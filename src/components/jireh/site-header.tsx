@@ -32,25 +32,26 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 sm:h-24 items-center justify-between">
           {/* Brand */}
-          <a href="#top" className="flex items-center gap-2 group">
+          <a href="#top" className="flex items-center gap-2 group py-2 overflow-hidden h-20 sm:h-24">
             <Image
               src="/jireh-logo.png"
               alt="Jireh"
-              width={160}
-              height={160}
-              className="h-16 w-auto"
+              width={200}
+              height={200}
+              priority
+              className="h-24 sm:h-32 w-auto object-cover object-left scale-110 origin-left"
             />
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-md">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="relative px-3 py-2 text-sm text-fog hover:text-white transition-colors"
+                className="relative px-4 py-2 text-[13px] font-medium tracking-wide text-fog hover:text-white transition-all rounded-full hover:bg-white/10"
               >
                 <span className="relative z-10">{l.label}</span>
               </a>

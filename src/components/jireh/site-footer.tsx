@@ -18,7 +18,7 @@ const FOOTER_LINKS = [
     links: [
       { label: "Web Development & UI/UX", href: "#services" },
       { label: "Marketing & Branding", href: "#services" },
-      { label: "Automation Services", href: "#services" },
+      { label: "AI and Automation Services", href: "#services" },
       { label: "Start a project", href: "#contact" },
     ],
   },
@@ -52,7 +52,7 @@ export function SiteFooter() {
             </a>
             <p className="mt-4 max-w-sm text-sm text-fog leading-relaxed">
               A digital agency that designs, builds, and optimizes high-performance
-              online systems. Web development, marketing, and automation, all under one roof.
+              online systems. Web development, marketing, and AI and automation, all under one roof.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <SocialIcon icon={Linkedin} href="#" label="LinkedIn" />

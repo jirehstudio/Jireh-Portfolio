@@ -1,45 +1,40 @@
 "use client";
 
+import Image from "next/image";
+
 import {
-  ShoppingBag,
-  LineChart,
-  Truck,
+  Globe,
+  Plane,
   ArrowUpRight,
 } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 const WORK = [
   {
-    tag: "E-commerce Transformation",
-    project: "Project Solstice",
-    accent: "coral" as const,
-    icon: ShoppingBag,
-    summary:
-      "Rebuilt a legacy storefront with a custom design system and Core Web Vitals tuning. LCP dropped from 4.2s to 0.9s.",
-    metric: "+38%",
-    metricLabel: "conversion rate",
-    mockup: "storefront",
-  },
-  {
-    tag: "Marketing Engine",
-    project: "Fintech Growth",
+    tag: "International Art Gallery",
+    project: "Matti Sirvio Art Galleria",
     accent: "cyan" as const,
-    icon: LineChart,
+    icon: Globe,
     summary:
-      "SEO infrastructure, content engine, and paid acquisition loops aligned to a single revenue model across 14 markets.",
-    metric: "3.1x",
-    metricLabel: "qualified pipeline",
-    mockup: "analytics",
+      "A scalable monorepo architecture featuring an Astro frontend, React admin panel, and Cloudflare workers. Engineered with rigorous SEO, accessibility, and Core Web Vitals optimization.",
+    metric: "Global",
+    metricLabel: "audience reach",
+    mockup: "storefront" as const,
+    image: "/msag.png",
+    link: "https://mattisirvioartgalleria.com",
   },
   {
-    tag: "Automation at Scale",
-    project: "Logistics Ops",
-    accent: "coral" as const,
-    icon: Truck,
+    tag: "Destination Agency",
+    project: "Sunzee Travel",
+    accent: "cyan" as const,
+    icon: Plane,
     summary:
-      "Workflow rules and a monitoring dashboard cut manual coordination time across a 9-node supply chain by two-thirds.",
-    metric: "−68%",
-    metricLabel: "manual ops hours",
-    mockup: "logistics",
+      "A bespoke travel platform showcasing signature destinations across East Africa and the Indian Ocean. Designed to seamlessly convert wanderlust into direct booking inquiries.",
+    metric: "Bespoke",
+    metricLabel: "travel journeys",
+    mockup: "analytics" as const,
+    image: "/sunzee.png",
+    link: "https://sunzeeholidays.com",
   },
 ];
 
@@ -47,77 +42,99 @@ export function Work() {
   return (
     <section id="work" className="relative py-24 sm:py-32">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="max-w-2xl mb-14">
-          <span className="eyebrow-accent">Selected Work</span>
-          <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-            <span className="gradient-text">Real systems, </span>
-            <span className="gradient-accent">measurable outcomes.</span>
-          </h2>
-          <p className="mt-4 text-fog leading-relaxed">
-            A snapshot of recent engagements across our three pillars, each shipped in
-            weeks, not quarters, and instrumented from day one.
-          </p>
-        </div>
+        <Reveal>
+          <div className="max-w-2xl mb-14">
+            <span className="eyebrow-accent">Selected Work</span>
+            <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
+              <span className="gradient-text">Digital platforms built for </span>
+              <span className="gradient-accent">global reach.</span>
+            </h2>
+            <p className="mt-4 text-fog leading-relaxed">
+              From high-performance international art galleries to bespoke destination agencies, 
+              we engineer experiences that captivate global audiences and drive real results.
+            </p>
 
-        <div className="grid lg:grid-cols-3 gap-5">
-          {WORK.map((w) => (
-            <article
-              key={w.project}
-              className={`glass-card overflow-hidden flex flex-col ${w.accent === "coral" ? "glass-card-coral" : ""}`}
-            >
-              {/* Mockup */}
-              <div className="relative h-44 border-b border-line bg-ink-2 overflow-hidden">
-                <Mockup variant={w.mockup} accent={w.accent} />
-                <div className="absolute top-3 left-3 flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-coral/70" />
-                  <span className="h-2 w-2 rounded-full bg-yellow-400/70" />
-                  <span className="h-2 w-2 rounded-full bg-cyan/70" />
-                </div>
-                <div className="absolute top-3 right-3 inline-flex items-center gap-2 rounded-full border border-line bg-ink/70 px-2.5 py-1 backdrop-blur">
-                  <w.icon
-                    className={`h-3.5 w-3.5 ${w.accent === "coral" ? "text-coral" : "text-cyan"}`}
-                  />
-                  <span
-                    className={`text-[10px] uppercase tracking-wider ${
-                      w.accent === "coral" ? "text-coral" : "text-cyan"
-                    }`}
-                  >
-                    {w.tag}
-                  </span>
-                </div>
-              </div>
+            {/* Hidden for future projects: 
+            <span className="eyebrow-accent">Selected Work</span>
+            <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
+              <span className="gradient-text">Real systems, </span>
+              <span className="gradient-accent">measurable outcomes.</span>
+            </h2>
+            <p className="mt-4 text-fog leading-relaxed">
+              A snapshot of recent engagements across our three pillars, each shipped in
+              weeks, not quarters, and instrumented from day one.
+            </p>
+            */}
+          </div>
+        </Reveal>
 
-              {/* Body */}
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display text-xl font-semibold text-white">
-                    {w.project}
-                  </h3>
-                  <div className="text-right">
-                    <div
-                      className={`font-display text-2xl font-semibold ${
+        <div className="grid md:grid-cols-2 max-w-5xl gap-6">
+          {WORK.map((w, index) => (
+            <Reveal key={w.project} delay={index * 0.1}>
+              <article
+                className={`glass-card overflow-hidden flex flex-col h-full ${w.accent === "coral" ? "glass-card-coral" : ""}`}
+              >
+                {/* Mockup */}
+                <div className="relative h-44 border-b border-line bg-ink-2 overflow-hidden">
+                  {w.image ? (
+                    <Image src={w.image} alt={w.project} fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                  ) : (
+                    <Mockup variant={w.mockup} accent={w.accent} />
+                  )}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-coral/70" />
+                    <span className="h-2 w-2 rounded-full bg-yellow-400/70" />
+                    <span className="h-2 w-2 rounded-full bg-cyan/70" />
+                  </div>
+                  <div className="absolute top-3 right-3 inline-flex items-center gap-2 rounded-full border border-line bg-ink/70 px-2.5 py-1 backdrop-blur">
+                    <w.icon
+                      className={`h-3.5 w-3.5 ${w.accent === "coral" ? "text-coral" : "text-cyan"}`}
+                    />
+                    <span
+                      className={`text-[10px] uppercase tracking-wider ${
                         w.accent === "coral" ? "text-coral" : "text-cyan"
                       }`}
                     >
-                      {w.metric}
-                    </div>
-                    <div className="text-[10px] uppercase tracking-wider text-fog">
-                      {w.metricLabel}
-                    </div>
+                      {w.tag}
+                    </span>
                   </div>
                 </div>
-                <p className="mt-3 text-sm text-fog leading-relaxed flex-1">
-                  {w.summary}
-                </p>
-                <a
-                  href="#contact"
-                  className="mt-5 inline-flex items-center gap-1 text-sm text-white group/link"
-                >
-                  Read case study
-                  <ArrowUpRight className="h-3.5 w-3.5 text-cyan group-hover/link:translate-x-0.5 transition-transform" />
-                </a>
-              </div>
-            </article>
+
+                {/* Body */}
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="font-display text-xl font-semibold text-white">
+                      {w.project}
+                    </h3>
+                    <div className="text-right">
+                      <div
+                        className={`font-display text-2xl font-semibold ${
+                          w.accent === "coral" ? "text-coral" : "text-cyan"
+                        }`}
+                      >
+                        {w.metric}
+                      </div>
+                      <div className="text-[10px] uppercase tracking-wider text-mist">
+                        {w.metricLabel}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm text-fog leading-relaxed flex-1">
+                    {w.summary}
+                  </p>
+                  <a
+                    href={w.link || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-6 inline-flex items-center gap-1 text-sm transition-all hover:gap-2 ${
+                      w.accent === "coral" ? "text-coral" : "text-cyan"
+                    }`}
+                  >
+                    Visit Website <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

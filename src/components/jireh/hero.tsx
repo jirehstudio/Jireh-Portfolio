@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+
 import { ArrowUpRight } from "lucide-react";
 
 export function Hero() {
@@ -14,10 +14,18 @@ export function Hero() {
       <div className="orb animate-pulse-soft -top-20 -right-20 h-[420px] w-[420px] bg-cyan/30" />
       <div className="orb top-40 -left-32 h-[360px] w-[360px] bg-[#00b4d8]/20" />
 
-      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          {/* Left: Copy */}
-          <div className="lg:col-span-7 animate-fade-up">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 flex items-center justify-center overflow-hidden">
+        <HeroVisual />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="flex flex-col items-center text-center relative">
+          {/* Black shade for readability */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] max-w-5xl h-[120%] bg-black/70 blur-[100px] rounded-[100%] pointer-events-none -z-10" />
+
+          {/* Top: Copy */}
+          <div className="w-full max-w-4xl animate-fade-up flex flex-col items-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-line bg-ink-2/60 px-3 py-1.5 backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
@@ -28,21 +36,21 @@ export function Hero() {
               </span>
             </div>
 
-            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-tight">
+            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-tight mx-auto">
               <span className="gradient-text">Crafting digital</span>
-              <br />
-              <span className="gradient-text">excellence for</span>
-              <br />
+              <br className="hidden sm:block" />
+              <span className="gradient-text"> excellence for </span>
+              <br className="hidden sm:block" />
               <span className="gradient-accent">ambitious teams.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base sm:text-lg text-fog leading-relaxed">
+            <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-fog leading-relaxed">
               Jireh Studio is a digital agency that designs, builds, and optimizes
               high-performance online systems. We blend web development, integrated
-              marketing, and intelligent automation into one delivery engine.
+              marketing, and intelligent AI and automation into one delivery engine.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center items-center gap-3">
               <a href="#contact" className="btn-primary">
                 Start a project <ArrowUpRight className="h-4 w-4" />
               </a>
@@ -52,13 +60,13 @@ export function Hero() {
             </div>
 
             {/* Stat row */}
-            <dl className="mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-xl">
+            <dl className="mt-12 flex flex-wrap justify-center gap-8 sm:gap-16 max-w-2xl mx-auto">
               {[
                 { k: "150+", v: "Projects launched" },
                 { k: "300%", v: "Average ROI" },
                 { k: "4–6w", v: "First milestone" },
               ].map((s) => (
-                <div key={s.k} className="border-l border-line pl-4">
+                <div key={s.k} className="flex flex-col items-center">
                   <dt className="font-display text-2xl sm:text-3xl font-semibold text-white">
                     {s.k}
                   </dt>
@@ -68,10 +76,6 @@ export function Hero() {
             </dl>
           </div>
 
-          {/* Right: Visual orb stack */}
-          <div className="lg:col-span-5 relative h-[420px] lg:h-[520px] animate-fade-up [animation-delay:120ms]">
-            <HeroVisual />
-          </div>
         </div>
 
         {/* Trusted-by strip */}
@@ -116,13 +120,13 @@ const LOGOS = [
 function HeroVisual() {
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <Image
-        src="/globe.png"
-        alt="Digital globe"
-        width={520}
-        height={520}
-        className="h-auto w-full max-w-[420px] sm:max-w-[520px] animate-floaty drop-shadow-[0_0_60px_rgba(0,224,216,0.35)]"
-        priority
+      <video
+        src="/can_you_make_this_with_transpa.mp4"
+        className="h-full w-full object-cover scale-110 animate-floaty drop-shadow-[0_0_60px_rgba(0,224,216,0.35)] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"
+        autoPlay
+        loop
+        muted
+        playsInline
       />
     </div>
   );

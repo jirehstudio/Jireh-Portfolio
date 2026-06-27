@@ -38,9 +38,9 @@ export function SiteHeader() {
             <Image
               src="/jireh-logo.png"
               alt="Jireh"
-              width={120}
-              height={40}
-              className="h-10 w-auto"
+              width={160}
+              height={160}
+              className="h-16 w-auto"
             />
           </a>
 

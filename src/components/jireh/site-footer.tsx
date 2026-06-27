@@ -45,9 +45,9 @@ export function SiteFooter() {
               <Image
                 src="/jireh-logo.png"
                 alt="Jireh"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
+                width={200}
+                height={200}
+                className="h-20 w-auto"
               />
             </a>
             <p className="mt-4 max-w-sm text-sm text-fog leading-relaxed">

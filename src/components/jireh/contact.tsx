@@ -43,7 +43,7 @@ export function Contact() {
               <WorldMap />
               <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] uppercase tracking-wider text-fog">
                 <span>Active engagements</span>
-                <span className="text-cyan">12 cities · 4 continents</span>
+                <span className="text-cyan">12 cities · 6 continents</span>
               </div>
             </div>
           </div>
@@ -189,10 +189,13 @@ function WorldMap() {
   // Accurate city coordinates mapped on the Robinson projection (2000 x 1001 grid)
   const nodes = [
     { x: 220, y: 305, label: "Vancouver" },
+    { x: 720, y: 730, label: "São Paulo" },
     { x: 1040, y: 240, label: "Berlin" },
+    { x: 1295, y: 415, label: "Muscat" },
+    { x: 1370, y: 450, label: "Mumbai" },
+    { x: 1294, y: 701, label: "Mauritius" },
     { x: 1560, y: 564, label: "Singapore" },
     { x: 1780, y: 810, label: "Sydney" },
-    { x: 720, y: 730, label: "São Paulo" },
   ];
 
   return (
@@ -200,15 +203,15 @@ function WorldMap() {
       <svg
         viewBox="0 0 2000 1001"
         className="absolute inset-0 h-full w-full"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
       >
-        {/* Blue outline world map */}
+        {/* Blue/Cyan outline world map */}
         {countries.map((c) => (
           <path
             key={c.id}
             d={c.shape}
-            fill="rgba(0, 224, 216, 0.02)"
-            stroke="rgba(0, 224, 216, 0.15)"
+            fill="rgba(0, 224, 216, 0.05)"
+            stroke="rgba(0, 224, 216, 0.35)"
             strokeWidth="1.5"
             strokeLinejoin="round"
           />
@@ -217,36 +220,55 @@ function WorldMap() {
         {/* Connection arcs */}
         {[
           [220, 305, 1040, 240],   // Vancouver -> Berlin
-          [1040, 240, 1560, 564],  // Berlin -> Singapore
+          [1040, 240, 1295, 415],  // Berlin -> Muscat
+          [1295, 415, 1370, 450],  // Muscat -> Mumbai
+          [1370, 450, 1560, 564],  // Mumbai -> Singapore
           [1560, 564, 1780, 810],  // Singapore -> Sydney
           [220, 305, 720, 730],   // Vancouver -> São Paulo
-          [1040, 240, 720, 730],   // Berlin -> São Paulo
-        ].map(([x1, y1, x2, y2], i) => (
-          <path
-            key={i}
-            d={`M ${x1} ${y1} Q ${(x1 + x2) / 2} ${Math.min(y1, y2) - 150} ${x2} ${y2}`}
-            fill="none"
-            stroke="rgba(0, 224, 216, 0.35)"
-            strokeWidth="2.5"
-            strokeDasharray="8 8"
-          />
+          [720, 730, 1040, 240],   // São Paulo -> Berlin
+          [1370, 450, 1294, 701],  // Mumbai -> Mauritius
+          [1294, 701, 1780, 810],  // Mauritius -> Sydney
+        ].map(([x1, y1, x2, y2], i) => {
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const cy = Math.min(y1, y2) - (dist * 0.18 + 20);
+          return (
+            <path
+              key={i}
+              d={`M ${x1} ${y1} Q ${(x1 + x2) / 2} ${cy} ${x2} ${y2}`}
+              fill="none"
+              stroke="rgba(0, 224, 216, 0.45)"
+              strokeWidth="2.5"
+              strokeDasharray="8 8"
+            />
+          );
+        })}
+
+        {/* Glow nodes inside SVG for perfect scaling */}
+        {nodes.map((n) => (
+          <g key={n.label} transform={`translate(${n.x}, ${n.y})`}>
+            {/* Pulsing ring */}
+            <circle r="6" fill="none" stroke="#00e0d8" strokeWidth="2.5" opacity="0.8">
+              <animate
+                attributeName="r"
+                values="6;26"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+              <animate
+                attributeName="opacity"
+                values="0.8;0"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </circle>
+            {/* Solid center dot */}
+            <circle r="8" fill="#00e0d8" />
+            <circle r="12" fill="none" stroke="#00e0d8" strokeWidth="1.5" opacity="0.3" />
+          </g>
         ))}
       </svg>
-
-      {/* Glow nodes */}
-      {nodes.map((n) => (
-        <div
-          key={n.label}
-          className="map-dot animate-pulse-soft"
-          style={{
-            left: `${(n.x / 2000) * 100}%`,
-            top: `${(n.y / 1001) * 100}%`,
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <span className="absolute -inset-1.5 rounded-full bg-cyan/35 animate-ping" />
-        </div>
-      ))}
     </div>
   );
 }

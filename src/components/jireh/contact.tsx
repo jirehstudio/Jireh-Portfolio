@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowUpRight, Mail, MapPin, Clock, Check } from "lucide-react";
+import countries from "world-map-country-shapes";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -185,74 +186,49 @@ function Field({
 }
 
 function WorldMap() {
-  // Stylized dotted world map with cyan nodes
-  const dots = [
-    // North America
-    [80, 70],
-    [110, 85],
-    [95, 100],
-    [130, 95],
-    // South America
-    [150, 140],
-    [160, 165],
-    // Europe
-    [230, 60],
-    [245, 75],
-    [255, 65],
-    // Africa
-    [250, 110],
-    [265, 130],
-    [260, 145],
-    // Middle East
-    [285, 90],
-    // Asia
-    [320, 70],
-    [340, 85],
-    [360, 95],
-    [380, 75],
-    [400, 90],
-    // SE Asia
-    [390, 120],
-    [410, 130],
-    // Oceania
-    [430, 160],
-    [450, 150],
-  ];
+  // Accurate city coordinates mapped on the Robinson projection (2000 x 1001 grid)
   const nodes = [
-    { x: 110, y: 85, label: "Vancouver" },
-    { x: 245, y: 75, label: "Berlin" },
-    { x: 340, y: 85, label: "Singapore" },
-    { x: 430, y: 160, label: "Sydney" },
-    { x: 150, y: 140, label: "São Paulo" },
+    { x: 220, y: 305, label: "Vancouver" },
+    { x: 1040, y: 240, label: "Berlin" },
+    { x: 1560, y: 564, label: "Singapore" },
+    { x: 1780, y: 810, label: "Sydney" },
+    { x: 720, y: 730, label: "São Paulo" },
   ];
 
   return (
     <div className="absolute inset-0">
       <svg
-        viewBox="0 0 500 200"
+        viewBox="0 0 2000 1001"
         className="absolute inset-0 h-full w-full"
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* Dotted continents approximation */}
-        {dots.map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="1.2" fill="rgba(255,255,255,0.18)" />
+        {/* Blue outline world map */}
+        {countries.map((c) => (
+          <path
+            key={c.id}
+            d={c.shape}
+            fill="rgba(0, 224, 216, 0.02)"
+            stroke="rgba(0, 224, 216, 0.15)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
         ))}
 
         {/* Connection arcs */}
         {[
-          [110, 85, 245, 75],
-          [245, 75, 340, 85],
-          [340, 85, 430, 160],
-          [110, 85, 150, 140],
-          [245, 75, 150, 140],
+          [220, 305, 1040, 240],   // Vancouver -> Berlin
+          [1040, 240, 1560, 564],  // Berlin -> Singapore
+          [1560, 564, 1780, 810],  // Singapore -> Sydney
+          [220, 305, 720, 730],   // Vancouver -> São Paulo
+          [1040, 240, 720, 730],   // Berlin -> São Paulo
         ].map(([x1, y1, x2, y2], i) => (
           <path
             key={i}
-            d={`M ${x1} ${y1} Q ${(x1 + x2) / 2} ${Math.min(y1, y2) - 30} ${x2} ${y2}`}
+            d={`M ${x1} ${y1} Q ${(x1 + x2) / 2} ${Math.min(y1, y2) - 150} ${x2} ${y2}`}
             fill="none"
-            stroke="rgba(0,224,216,0.4)"
-            strokeWidth="0.6"
-            strokeDasharray="2 2"
+            stroke="rgba(0, 224, 216, 0.35)"
+            strokeWidth="2.5"
+            strokeDasharray="8 8"
           />
         ))}
       </svg>
@@ -261,13 +237,14 @@ function WorldMap() {
       {nodes.map((n) => (
         <div
           key={n.label}
-          className="map-dot"
+          className="map-dot animate-pulse-soft"
           style={{
-            left: `${(n.x / 500) * 100}%`,
-            top: `${(n.y / 200) * 100}%`,
+            left: `${(n.x / 2000) * 100}%`,
+            top: `${(n.y / 1001) * 100}%`,
+            transform: "translate(-50%, -50%)",
           }}
         >
-          <span className="absolute -inset-1 rounded-full bg-cyan/30 animate-ping" />
+          <span className="absolute -inset-1.5 rounded-full bg-cyan/35 animate-ping" />
         </div>
       ))}
     </div>

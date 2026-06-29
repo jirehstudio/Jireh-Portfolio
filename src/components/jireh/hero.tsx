@@ -127,6 +127,8 @@ function HeroVisual() {
         loop
         muted
         playsInline
+        aria-label="Background Visual Showcase"
+      // preload="auto"
       />
     </div>
   );
@@ -152,18 +154,16 @@ function FloatingChip({
     >
       <div className="glass-card px-3 py-2 flex items-center gap-2">
         <span
-          className={`inline-flex h-7 w-7 items-center justify-center rounded-md ${
-            accent === "cyan" ? "bg-cyan/10 text-cyan" : "bg-coral/10 text-coral"
-          }`}
+          className={`inline-flex h-7 w-7 items-center justify-center rounded-md ${accent === "cyan" ? "bg-cyan/10 text-cyan" : "bg-coral/10 text-coral"
+            }`}
         >
           {icon}
         </span>
         <div className="pr-1">
           <div className="text-[10px] uppercase tracking-wider text-fog">{label}</div>
           <div
-            className={`text-sm font-semibold ${
-              accent === "cyan" ? "text-white" : "text-coral"
-            }`}
+            className={`text-sm font-semibold ${accent === "cyan" ? "text-white" : "text-coral"
+              }`}
           >
             {value}
           </div>

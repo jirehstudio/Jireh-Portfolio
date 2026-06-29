@@ -17,7 +17,7 @@ const SERVICES = [
     title: "Web Development & UI/UX",
     desc:
       "Custom-designed websites, storefronts, and web applications engineered for low LCP, fast load times, and conversion-rate optimization that reduces bounce.",
-    accent: "cyan" as const,
+    accent: "cyan" as "cyan" | "coral",
     icon: Code2,
     bullets: ["Custom design systems", "Core Web Vitals tuning", "CRO & A/B testing"],
   },
@@ -26,7 +26,7 @@ const SERVICES = [
     title: "Marketing & Branding",
     desc:
       "Brand rebuilds, identity systems, SEO infrastructure, content engines, and performance ad campaigns engineered to grow online revenue, not just traffic.",
-    accent: "cyan" as const,
+    accent: "cyan" as "cyan" | "coral",
     icon: PenTool,
     bullets: ["Brand identity rebuilds", "SEO systems & content", "Paid acquisition"],
   },
@@ -35,7 +35,7 @@ const SERVICES = [
     title: "AI and Automation Services",
     desc:
       "Workflow design, notification systems, and pipeline rules that remove manual work. Dashboards and monitoring nodes that reduce operational errors.",
-    accent: "cyan" as const,
+    accent: "cyan" as "cyan" | "coral",
     icon: Workflow,
     bullets: ["Workflow AI and automation", "Monitoring dashboards", "Pipeline rules"],
   },

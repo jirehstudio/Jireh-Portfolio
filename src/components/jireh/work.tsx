@@ -13,7 +13,7 @@ const WORK = [
   {
     tag: "International Art Gallery",
     project: "Matti Sirvio Art Galleria",
-    accent: "cyan" as const,
+    accent: "cyan" as "cyan" | "coral",
     icon: Globe,
     summary:
       "A scalable monorepo architecture featuring an Astro frontend, React admin panel, and Cloudflare workers. Engineered with rigorous SEO, accessibility, and Core Web Vitals optimization.",
@@ -26,7 +26,7 @@ const WORK = [
   {
     tag: "Destination Agency",
     project: "Sunzee Travel",
-    accent: "cyan" as const,
+    accent: "cyan" as "cyan" | "coral",
     icon: Plane,
     summary:
       "A bespoke travel platform showcasing signature destinations across East Africa and the Indian Ocean. Designed to seamlessly convert wanderlust into direct booking inquiries.",

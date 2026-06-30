@@ -75,7 +75,7 @@ export function Comparison() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} amount={0.2}>
           <div className="glass-card overflow-hidden">
             <div className="grid grid-cols-[1fr_120px_120px] sm:grid-cols-[1fr_180px_180px]">
               {/* Header row */}

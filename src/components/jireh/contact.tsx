@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowUpRight, Mail, MapPin, Clock, Check } from "lucide-react";
 import countries from "world-map-country-shapes";
+import { Reveal } from "@/components/ui/reveal";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -21,7 +22,7 @@ export function Contact() {
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="grid lg:grid-cols-12 gap-10">
           {/* Left: copy + world map */}
-          <div className="lg:col-span-6">
+          <Reveal className="lg:col-span-6">
             <span className="eyebrow-accent">Contact &amp; CTA</span>
             <h2 className="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
               <span className="gradient-text">Let's build the </span>
@@ -46,10 +47,10 @@ export function Contact() {
                 <span className="text-cyan">12 cities · 6 continents</span>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: form */}
-          <div className="lg:col-span-6">
+          <Reveal delay={0.2} className="lg:col-span-6">
             <div className="glass-card p-6 sm:p-8">
               {submitted ? (
                 <div className="flex flex-col items-center text-center py-12">
@@ -99,10 +100,11 @@ export function Contact() {
                     onChange={(v) => setForm({ ...form, company: v })}
                   />
                   <div>
-                    <label className="block text-xs uppercase tracking-wider text-fog mb-2">
+                    <label htmlFor="message" className="block text-xs uppercase tracking-wider text-fog mb-2">
                       What are you shipping?
                     </label>
                     <textarea
+                      id="message"
                       required
                       rows={5}
                       placeholder="We're rebuilding our storefront and need to cut LCP from 4s to under 1s…"
@@ -124,7 +126,7 @@ export function Contact() {
                 </form>
               )}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -168,12 +170,14 @@ function Field({
   type?: string;
   required?: boolean;
 }) {
+  const id = label.toLowerCase().replace(/\s+/g, "-");
   return (
     <div>
-      <label className="block text-xs uppercase tracking-wider text-fog mb-2">
+      <label htmlFor={id} className="block text-xs uppercase tracking-wider text-fog mb-2">
         {label}
       </label>
       <input
+        id={id}
         type={type}
         required={required}
         placeholder={placeholder}

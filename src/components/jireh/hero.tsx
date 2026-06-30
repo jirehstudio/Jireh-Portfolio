@@ -1,11 +1,24 @@
 "use client";
 
 
+import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 
 export function Hero() {
+  const [projectText, setProjectText] = useState("Accepting new projects");
+
+  useEffect(() => {
+    const targetDate = new Date();
+    // Look ahead 30 days so that in the final month of a quarter we book for the next quarter
+    targetDate.setDate(targetDate.getDate() + 30);
+    const quarter = Math.floor(targetDate.getMonth() / 3) + 1;
+    const year = targetDate.getFullYear();
+    setProjectText(`Accepting 3 new projects for Q${quarter} ${year}`);
+  }, []);
+
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
+    <section id="top" className="relative overflow-hidden min-h-screen flex items-center justify-center pt-24 pb-12">
       {/* Background grid */}
       <div className="absolute inset-0 grid-bg opacity-60 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]" />
       <div className="absolute inset-0 noise" />
@@ -19,47 +32,55 @@ export function Hero() {
         <HeroVisual />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 w-full">
         <div className="flex flex-col items-center text-center relative">
           {/* Black shade for readability */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] max-w-5xl h-[120%] bg-black/70 blur-[100px] rounded-[100%] pointer-events-none -z-10" />
 
           {/* Top: Copy */}
-          <div className="w-full max-w-4xl animate-fade-up flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-line bg-ink-2/60 px-3 py-1.5 backdrop-blur">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
-              </span>
-              <span className="text-xs text-mist tracking-wide">
-                Accepting 3 new projects for Q3 2026
-              </span>
-            </div>
+          <div className="w-full max-w-4xl flex flex-col items-center">
+            <Reveal amount={0} delay={0.1}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-line bg-ink-2/60 px-3 py-1.5 backdrop-blur">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan" />
+                </span>
+                <span className="text-xs text-mist tracking-wide">
+                  {projectText}
+                </span>
+              </div>
+            </Reveal>
 
-            <h1 className="mt-6 font-display text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-tight mx-auto">
-              <span className="gradient-text">Crafting digital</span>
-              <br className="hidden sm:block" />
-              <span className="gradient-text"> excellence for </span>
-              <br className="hidden sm:block" />
-              <span className="gradient-accent">ambitious teams.</span>
-            </h1>
+            <Reveal amount={0} delay={0.25}>
+              <h1 className="mt-6 font-display text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-tight mx-auto">
+                <span className="gradient-text">Crafting digital</span>
+                <br className="hidden sm:block" />
+                <span className="gradient-text"> excellence for </span>
+                <br className="hidden sm:block" />
+                <span className="gradient-accent">ambitious teams.</span>
+              </h1>
+            </Reveal>
 
-            <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-fog leading-relaxed">
-              Jireh Studio is a digital agency that designs, builds, and optimizes
-              high-performance online systems. We blend web development, integrated
-              marketing, and intelligent AI and automation into one delivery engine.
-            </p>
+            <Reveal amount={0} delay={0.4}>
+              <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-fog leading-relaxed text-balance">
+                Jireh Studio is a digital design and engineering agency crafting premium brand websites,
+                high-conversion storefronts, and custom software. We blend world-class UI/UX, robust development,
+                revenue marketing, and custom workflow AI to scale your business.
+              </p>
+            </Reveal>
 
-            <div className="mt-8 flex flex-wrap justify-center items-center gap-3">
-              <a href="#contact" className="btn-primary">
-                Start a project <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a href="#work" className="btn-ghost">
-                View selected work
-              </a>
-            </div>
+            <Reveal amount={0} delay={0.55}>
+              <div className="mt-8 flex flex-wrap justify-center items-center gap-3">
+                <a href="#contact" className="btn-primary">
+                  Start a project <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <a href="#work" className="btn-ghost">
+                  View selected work
+                </a>
+              </div>
+            </Reveal>
 
-            {/* Stat row */}
+          {/* Stat row - Hidden for now
             <dl className="mt-12 flex flex-wrap justify-center gap-8 sm:gap-16 max-w-2xl mx-auto">
               {[
                 { k: "150+", v: "Projects launched" },
@@ -74,11 +95,12 @@ export function Hero() {
                 </div>
               ))}
             </dl>
+            */}
           </div>
 
         </div>
 
-        {/* Trusted-by strip */}
+        {/* Trusted-by strip - Hidden for now
         <div className="mt-20 sm:mt-28">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-fog mb-5">
             <span>Trusted by founders &amp; operators across</span>
@@ -101,6 +123,7 @@ export function Hero() {
             </div>
           </div>
         </div>
+        */}
       </div>
     </section>
   );
@@ -118,18 +141,26 @@ const LOGOS = [
 ];
 
 function HeroVisual() {
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    setLoadVideo(true);
+  }, []);
+
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <video
-        src="/can_you_make_this_with_transpa.mp4"
-        className="h-full w-full object-cover scale-110 animate-floaty drop-shadow-[0_0_60px_rgba(0,224,216,0.35)] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-label="Background Visual Showcase"
-      // preload="auto"
-      />
+      {loadVideo && (
+        <video
+          src="/can_you_make_this_with_transpa.mp4"
+          className="h-full w-full object-cover object-top scale-110 animate-floaty drop-shadow-[0_0_60px_rgba(0,224,216,0.35)] [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]"
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-label="Background Visual Showcase"
+          preload="auto"
+        />
+      )}
     </div>
   );
 }

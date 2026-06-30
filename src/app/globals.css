@@ -189,6 +189,7 @@
   filter: blur(80px);
   pointer-events: none;
   opacity: 0.55;
+  will-change: transform, opacity;
 }
 
 .glow-ring {
@@ -214,11 +215,11 @@
   font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.02em;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 30px -8px rgba(0, 224, 216, 0.6);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px -8px rgba(0, 224, 216, 0.55);
   background: #1aefe7;
 }
 
@@ -235,12 +236,12 @@
   font-size: 0.875rem;
   letter-spacing: 0.02em;
   border: 1px solid var(--color-line);
-  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-ghost:hover {
   border-color: var(--color-cyan);
-  background: rgba(0, 224, 216, 0.06);
-  transform: translateY(-1px);
+  background: rgba(0, 224, 216, 0.08);
+  transform: translateY(-2px) scale(1.02);
 }
 
 /* ---------- Cards ---------- */
@@ -250,32 +251,42 @@
   border: 1px solid var(--color-line);
   border-radius: 18px;
   backdrop-filter: blur(8px);
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 .glass-card:hover {
-  border-color: rgba(0, 224, 216, 0.35);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -20px rgba(0, 224, 216, 0.18);
+  border-color: rgba(0, 224, 216, 0.45);
+  transform: translateY(-6px) scale(1.005);
+  box-shadow: 
+    0 25px 50px -20px rgba(0, 224, 216, 0.16),
+    0 0 50px -10px rgba(0, 224, 216, 0.08);
 }
 
 .glass-card-coral:hover {
-  border-color: rgba(255, 107, 107, 0.35);
-  box-shadow: 0 20px 60px -20px rgba(255, 107, 107, 0.18);
+  border-color: rgba(255, 107, 107, 0.45);
+  box-shadow: 
+    0 25px 50px -20px rgba(255, 107, 107, 0.16),
+    0 0 50px -10px rgba(255, 107, 107, 0.08);
 }
 
 /* ---------- Animations ---------- */
 @keyframes floaty {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -12px, 0); }
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -18px, 0) rotate(1.2deg); }
 }
-.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+  will-change: transform;
+}
 
 @keyframes pulse-soft {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
+  0%, 100% { opacity: 0.45; transform: scale(1) translate3d(0, 0, 0); }
+  50% { opacity: 0.75; transform: scale(1.06) translate3d(6px, -6px, 0); }
 }
-.animate-pulse-soft { animation: pulse-soft 5s ease-in-out infinite; }
+.animate-pulse-soft {
+  animation: pulse-soft 6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
@@ -288,14 +299,15 @@
 }
 .animate-marquee {
   animation: marquee 28s linear infinite;
+  will-change: transform;
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(32px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-up {
-  animation: fade-up 0.7s ease-out both;
+  animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes draw-line {

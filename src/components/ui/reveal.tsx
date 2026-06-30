@@ -8,6 +8,7 @@ interface RevealProps {
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
   className?: string;
+  amount?: number | "some" | "all";
 }
 
 export function Reveal({
@@ -15,12 +16,13 @@ export function Reveal({
   delay = 0,
   direction = "up",
   className = "",
+  amount = 0.8,
 }: RevealProps) {
   const directions = {
-    up: { y: 40, x: 0 },
-    down: { y: -40, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
+    up: { y: 24, x: 0 },
+    down: { y: -24, x: 0 },
+    left: { x: 24, y: 0 },
+    right: { x: -24, y: 0 },
   };
 
   return (
@@ -34,11 +36,11 @@ export function Reveal({
         y: 0,
         x: 0,
       }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, amount: amount }}
       transition={{
-        duration: 0.7,
+        duration: 0.85,
         delay: delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
+        ease: [0.16, 1, 0.3, 1],
       }}
       className={className}
     >

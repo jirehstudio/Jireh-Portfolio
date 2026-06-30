@@ -72,12 +72,18 @@ export function Work() {
           {WORK.map((w, index) => (
             <Reveal key={w.project} delay={index * 0.1}>
               <article
-                className={`glass-card overflow-hidden flex flex-col h-full ${w.accent === "coral" ? "glass-card-coral" : ""}`}
+                className={`glass-card group overflow-hidden flex flex-col h-full ${w.accent === "coral" ? "glass-card-coral" : ""}`}
               >
                 {/* Mockup */}
                 <div className="relative h-44 border-b border-line bg-ink-2 overflow-hidden">
                   {w.image ? (
-                    <Image src={w.image} alt={w.project} fill className="object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                    <Image
+                      src={w.image}
+                      alt={w.project}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 500px"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
                   ) : (
                     <Mockup variant={w.mockup} accent={w.accent} />
                   )}

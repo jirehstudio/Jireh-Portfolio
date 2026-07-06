@@ -72,7 +72,7 @@ export function Hero() {
             <Reveal amount={0} delay={0.55}>
               <div className="mt-8 flex flex-wrap justify-center items-center gap-3">
                 <a href="#contact" className="btn-primary">
-                  Start a project <ArrowUpRight className="h-4 w-4" />
+                  Start a project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a href="#work" className="btn-ghost">
                   View selected work
@@ -157,7 +157,7 @@ function HeroVisual() {
           loop
           muted
           playsInline
-          aria-label="Background Visual Showcase"
+          aria-hidden="true"
           preload="auto"
         />
       )}

@@ -95,6 +95,7 @@ export function Work() {
                   <div className="absolute top-3 right-3 inline-flex items-center gap-2 rounded-full border border-line bg-ink/70 px-2.5 py-1 backdrop-blur">
                     <w.icon
                       className={`h-3.5 w-3.5 ${w.accent === "coral" ? "text-coral" : "text-cyan"}`}
+                      aria-hidden="true"
                     />
                     <span
                       className={`text-[10px] uppercase tracking-wider ${
@@ -132,11 +133,12 @@ export function Work() {
                     href={w.link || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit website for ${w.project}`}
                     className={`mt-6 inline-flex items-center gap-1 text-sm transition-all hover:gap-2 ${
                       w.accent === "coral" ? "text-coral" : "text-cyan"
                     }`}
                   >
-                    Visit Website <ArrowUpRight className="h-3.5 w-3.5" />
+                    Visit Website <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                   </a>
                 </div>
               </article>
@@ -161,6 +163,7 @@ function Mockup({
       viewBox="0 0 320 180"
       className="absolute inset-0 h-full w-full"
       preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
     >
       <defs>
         <linearGradient id={`g-${variant}`} x1="0" y1="0" x2="1" y2="1">

@@ -34,10 +34,10 @@ export function SiteHeader() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex h-20 sm:h-24 items-center justify-between">
           {/* Brand */}
-          <a href="#top" className="flex items-center gap-2 group py-2 overflow-hidden h-20 sm:h-24">
+          <a href="#top" aria-label="Jireh Studio Home" className="flex items-center gap-2 group py-2 overflow-hidden h-20 sm:h-24">
             <Image
               src="/jireh-logo.png"
-              alt="Jireh"
+              alt=""
               width={200}
               height={200}
               priority
@@ -67,10 +67,11 @@ export function SiteHeader() {
           {/* Mobile toggle */}
           <button
             aria-label="Toggle navigation"
+            aria-expanded={open}
             className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-md border border-line text-white"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            {open ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -78,7 +79,7 @@ export function SiteHeader() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden border-t border-line bg-ink/95 backdrop-blur-xl">
-          <nav className="mx-auto max-w-7xl px-5 py-4 flex flex-col gap-1">
+          <nav aria-label="Mobile Navigation" className="mx-auto max-w-7xl px-5 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,7 +16,17 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#030712",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jireh.studio"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Jireh Studio | Crafting Digital Excellence",
   description:
     "Jireh Studio is a digital agency that designs, builds, and optimizes high-performance online systems. Web development & UI/UX, marketing & branding, and AI and automation services.",

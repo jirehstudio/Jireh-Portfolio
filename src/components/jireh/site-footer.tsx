@@ -41,10 +41,10 @@ export function SiteFooter() {
         <div className="grid lg:grid-cols-12 gap-10">
           {/* Brand block */}
           <div className="lg:col-span-5">
-            <a href="#top" className="flex items-center gap-2 group">
+            <a href="#top" aria-label="Jireh Studio Home" className="flex items-center gap-2 group">
               <Image
                 src="/jireh-logo.png"
-                alt="Jireh"
+                alt=""
                 width={200}
                 height={200}
                 className="h-20 w-auto"
@@ -98,7 +98,7 @@ export function SiteFooter() {
               href="#top"
               className="inline-flex items-center gap-1.5 text-xs text-fog hover:text-cyan transition-colors"
             >
-              Back to top <ArrowUp className="h-3 w-3" />
+              Back to top <ArrowUp className="h-3 w-3" aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -122,7 +122,7 @@ function SocialIcon({
       aria-label={label}
       className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-fog hover:text-cyan hover:border-cyan/40 transition-colors"
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-4 w-4" aria-hidden="true" />
     </a>
   );
 }

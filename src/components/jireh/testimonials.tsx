@@ -48,7 +48,7 @@ export function Testimonials() {
             </div>
             <div className="flex items-center gap-1 text-cyan">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-cyan" />
+                <Star key={i} className="h-4 w-4 fill-cyan" aria-hidden="true" />
               ))}
               <span className="ml-2 text-sm text-fog">4.9/5 across 40+ engagements</span>
             </div>
@@ -64,6 +64,7 @@ export function Testimonials() {
                 <div className="flex items-start justify-between">
                   <Quote
                     className={`h-8 w-8 ${t.accent === "coral" ? "text-coral/60" : "text-cyan/60"}`}
+                    aria-hidden="true"
                   />
                   <div
                     className={`font-display text-4xl font-semibold ${

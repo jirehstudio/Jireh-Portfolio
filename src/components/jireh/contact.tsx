@@ -100,10 +100,10 @@ export function Contact() {
                   data-netlify-honeypot="bot-field"
                 >
                   <input type="hidden" name="form-name" value="contact" />
-                  <p className="hidden">
+                  <p className="hidden" aria-hidden="true">
                     <label>
                       Don't fill this out if you're human:{" "}
-                      <input name="bot-field" />
+                      <input name="bot-field" tabIndex={-1} autoComplete="off" />
                     </label>
                   </p>
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -154,7 +154,7 @@ export function Contact() {
                       We never share your information.
                     </p>
                     <button type="submit" className="btn-primary whitespace-nowrap">
-                      Submit brief <ArrowUpRight className="h-4 w-4" />
+                      Submit brief <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </button>
                   </div>
                 </form>
@@ -178,7 +178,7 @@ function ContactRow({
 }) {
   return (
     <div className="flex items-center gap-3 rounded-xl border border-line bg-ink-2/40 px-4 py-3">
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-cyan/30 bg-cyan/5 text-cyan">
+      <span className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-cyan/30 bg-cyan/5 text-cyan" aria-hidden="true">
         <Icon className="h-4 w-4" />
       </span>
       <div>

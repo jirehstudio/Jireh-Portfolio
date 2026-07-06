@@ -77,24 +77,31 @@ export function Comparison() {
 
         <Reveal delay={0.1} amount={0.2}>
           <div className="glass-card overflow-hidden">
-            <div className="grid grid-cols-[1fr_120px_120px] sm:grid-cols-[1fr_180px_180px]">
+            <div
+              role="table"
+              aria-label="Comparison of Jireh Studio capabilities against typical agencies"
+              className="grid grid-cols-[1fr_120px_120px] sm:grid-cols-[1fr_180px_180px]"
+            >
               {/* Header row */}
-              <div className="p-5 sm:p-6 border-b border-line">
-                <span className="eyebrow">Capability</span>
-              </div>
-              <div className="p-5 sm:p-6 border-b border-l border-line bg-cyan/[0.04]">
-                <div className="font-display text-sm font-semibold text-cyan">Jireh Studio</div>
-                <div className="text-[10px] text-fog uppercase tracking-wider mt-0.5">Full system</div>
-              </div>
-              <div className="p-5 sm:p-6 border-b border-l border-line">
-                <div className="font-display text-sm font-semibold text-fog">Typical agency</div>
-                <div className="text-[10px] text-fog/70 uppercase tracking-wider mt-0.5">A la carte</div>
+              <div role="row" className="contents">
+                <div role="columnheader" className="p-5 sm:p-6 border-b border-line">
+                  <span className="eyebrow">Capability</span>
+                </div>
+                <div role="columnheader" className="p-5 sm:p-6 border-b border-l border-line bg-cyan/[0.04]">
+                  <div className="font-display text-sm font-semibold text-cyan">Jireh Studio</div>
+                  <div className="text-[10px] text-fog uppercase tracking-wider mt-0.5">Full system</div>
+                </div>
+                <div role="columnheader" className="p-5 sm:p-6 border-b border-l border-line">
+                  <div className="font-display text-sm font-semibold text-fog">Typical agency</div>
+                  <div className="text-[10px] text-fog/70 uppercase tracking-wider mt-0.5">A la carte</div>
+                </div>
               </div>
 
               {/* Body rows */}
               {ROWS.map((r, i) => (
-                <div key={r.label} className="contents">
+                <div role="row" key={r.label} className="contents">
                   <div
+                    role="rowheader"
                     className={`p-4 sm:p-5 text-sm text-mist ${
                       i === ROWS.length - 1 ? "" : "border-b border-line/60"
                     }`}
@@ -102,18 +109,20 @@ export function Comparison() {
                     {r.label}
                   </div>
                   <div
+                    role="cell"
                     className={`p-4 sm:p-5 border-l border-line/60 bg-cyan/[0.02] ${
                       i === ROWS.length - 1 ? "" : "border-b border-line/60"
                     }`}
                   >
-                    <Mark value={r.jireh} />
+                    <Mark value={r.jireh} label={`Jireh Studio: ${r.jireh === true ? 'Yes' : r.jireh === false ? 'No' : r.jireh}`} />
                   </div>
                   <div
+                    role="cell"
                     className={`p-4 sm:p-5 border-l border-line/60 ${
                       i === ROWS.length - 1 ? "" : "border-b border-line/60"
                     }`}
                   >
-                    <Mark value={r.typical} muted />
+                    <Mark value={r.typical} label={`Typical agency: ${r.typical === true ? 'Yes' : r.typical === false ? 'No' : r.typical}`} muted />
                   </div>
                 </div>
               ))}
@@ -125,11 +134,12 @@ export function Comparison() {
   );
 }
 
-function Mark({ value, muted }: { value: boolean | string; muted?: boolean }) {
+function Mark({ value, label, muted }: { value: boolean | string; label: string; muted?: boolean }) {
   if (value === true) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className={`rounded-full p-1 ${muted ? "bg-ink border border-line" : "bg-cyan/20 text-cyan"}`}>
+        <span className="sr-only">{label}</span>
+        <div className={`rounded-full p-1 ${muted ? "bg-ink border border-line" : "bg-cyan/20 text-cyan"}`} aria-hidden="true">
           <Check className={`h-4 w-4 ${muted ? "text-fog" : ""}`} />
         </div>
       </div>
@@ -138,13 +148,15 @@ function Mark({ value, muted }: { value: boolean | string; muted?: boolean }) {
   if (value === false) {
     return (
       <div className="flex h-full items-center justify-center">
-        <X className="h-4 w-4 text-line" />
+        <span className="sr-only">{label}</span>
+        <X className="h-4 w-4 text-line" aria-hidden="true" />
       </div>
     );
   }
   return (
     <div className="flex h-full items-center justify-center">
-      <span className="text-xl font-semibold text-mist">{value}</span>
+      <span className="sr-only">{label}</span>
+      <span className="text-xl font-semibold text-mist" aria-hidden="true">{value}</span>
     </div>
   );
 }

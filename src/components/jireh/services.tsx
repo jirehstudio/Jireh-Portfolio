@@ -73,7 +73,7 @@ export function Services() {
                   key={c.label}
                   className="inline-flex items-center gap-2 rounded-full border border-line bg-ink-2/60 px-3 py-1.5"
                 >
-                  <c.icon className="h-3.5 w-3.5 text-cyan" />
+                  <c.icon className="h-3.5 w-3.5 text-cyan" aria-hidden="true" />
                   <span className="text-xs text-mist">
                     {c.label} <span className="text-fog">· {c.note}</span>
                   </span>
@@ -99,7 +99,7 @@ export function Services() {
                         : "border-coral/30 bg-coral/5 text-coral"
                     }`}
                   >
-                    <s.icon className="h-5 w-5" />
+                    <s.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                 </div>
                 <h3 className="mt-8 font-display text-2xl font-semibold text-white group-hover:text-cyan transition-colors">
@@ -122,9 +122,10 @@ export function Services() {
                 </ul>
                 <a
                   href="#work"
+                  aria-label={`See ${s.title} in action`}
                   className="mt-6 inline-flex items-center gap-1 text-sm text-cyan hover:gap-2 transition-all"
                 >
-                  See it in action <ArrowUpRight className="h-3.5 w-3.5" />
+                  See it in action <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </article>
             </Reveal>

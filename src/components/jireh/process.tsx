@@ -56,43 +56,45 @@ export function Process() {
           </div>
         </Reveal>
 
-        <div className="grid lg:grid-cols-4 gap-5 relative">
+        <ol className="grid lg:grid-cols-4 gap-5 relative">
           {/* Horizontal connector (desktop) */}
-          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-line to-transparent" />
+          <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-line to-transparent" aria-hidden="true" />
 
           {STEPS.map((s, i) => (
-            <Reveal key={s.no} delay={i * 0.1} className="relative">
-              {/* Step number bubble */}
-              <div className="relative z-10 flex items-center gap-4 lg:block">
-                <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan/40 bg-ink-2">
-                  <span className="absolute inset-0 rounded-full bg-cyan/10 animate-pulse-soft" />
-                  <s.icon className="relative h-5 w-5 text-cyan" />
-                </div>
-                <span className="lg:mt-4 font-display text-xs uppercase tracking-[0.2em] text-fog">
-                  {s.duration}
-                </span>
-              </div>
-
-              <div className="mt-5">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-display text-5xl font-semibold text-ink-4">/</span>
-                  <span className="font-display text-5xl font-semibold gradient-accent">
-                    {s.no}
+            <li key={s.no} className="list-none">
+              <Reveal delay={i * 0.1} className="relative">
+                {/* Step number bubble */}
+                <div className="relative z-10 flex items-center gap-4 lg:block">
+                  <div className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan/40 bg-ink-2" aria-hidden="true">
+                    <span className="absolute inset-0 rounded-full bg-cyan/10 animate-pulse-soft" />
+                    <s.icon className="relative h-5 w-5 text-cyan" />
+                  </div>
+                  <span className="lg:mt-4 font-display text-xs uppercase tracking-[0.2em] text-fog">
+                    {s.duration}
                   </span>
                 </div>
-                <h3 className="mt-2 font-display text-xl font-semibold text-white">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm text-fog leading-relaxed">{s.desc}</p>
-              </div>
 
-              {/* Vertical connector (mobile) */}
-              {i < STEPS.length - 1 && (
-                <div className="lg:hidden mt-6 ml-6 h-8 w-px step-connector" />
-              )}
-            </Reveal>
+                <div className="mt-5">
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-5xl font-semibold text-ink-4">/</span>
+                    <span className="font-display text-5xl font-semibold gradient-accent">
+                      {s.no}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 font-display text-xl font-semibold text-white">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-sm text-fog leading-relaxed">{s.desc}</p>
+                </div>
+
+                {/* Vertical connector (mobile) */}
+                {i < STEPS.length - 1 && (
+                  <div className="lg:hidden mt-6 ml-6 h-8 w-px step-connector" aria-hidden="true" />
+                )}
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
 
         {/* Timeline callout */}
         <Reveal delay={0.4}>

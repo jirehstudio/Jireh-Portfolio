@@ -9,9 +9,26 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const formElement = e.currentTarget;
+    fetch("/__forms.html", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(new FormData(formElement) as any).toString(),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setSubmitted(true);
+        } else {
+          console.error("Form submission failed:", res.statusText);
+          setSubmitted(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Form submission error:", error);
+        setSubmitted(true);
+      });
   };
 
   return (
@@ -75,10 +92,24 @@ export function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="space-y-5">
+                <form
+                  name="contact"
+                  onSubmit={onSubmit}
+                  className="space-y-5"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p className="hidden">
+                    <label>
+                      Don't fill this out if you're human:{" "}
+                      <input name="bot-field" />
+                    </label>
+                  </p>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <Field
                       label="Your name"
+                      name="name"
                       placeholder="Sarah Chen"
                       value={form.name}
                       onChange={(v) => setForm({ ...form, name: v })}
@@ -86,6 +117,7 @@ export function Contact() {
                     />
                     <Field
                       label="Email"
+                      name="email"
                       type="email"
                       placeholder="sarah@company.com"
                       value={form.email}
@@ -95,6 +127,7 @@ export function Contact() {
                   </div>
                   <Field
                     label="Company"
+                    name="company"
                     placeholder="Northwind FinTech"
                     value={form.company}
                     onChange={(v) => setForm({ ...form, company: v })}
@@ -105,6 +138,7 @@ export function Contact() {
                     </label>
                     <textarea
                       id="message"
+                      name="message"
                       required
                       rows={5}
                       placeholder="We're rebuilding our storefront and need to cut LCP from 4s to under 1s…"
@@ -157,6 +191,7 @@ function ContactRow({
 
 function Field({
   label,
+  name,
   value,
   onChange,
   placeholder,
@@ -164,6 +199,7 @@ function Field({
   required = false,
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
@@ -178,6 +214,7 @@ function Field({
       </label>
       <input
         id={id}
+        name={name}
         type={type}
         required={required}
         placeholder={placeholder}

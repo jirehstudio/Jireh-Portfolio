@@ -1,0 +1,19 @@
+# Jireh Studio
+
+> A digital design and engineering agency crafting premium brand websites, high-conversion storefronts, and custom software.
+
+## Metadata
+- **URL**: https://jireh.studio
+- **Services**: Web Development & UI/UX, Marketing & Branding, AI and Automation Services
+- **Contact**: hello@jireh.studio
+
+## Markdown Mirrors
+- [Full Markdown Site Mirror](https://jireh.studio/llms-full.txt) - Complete site content optimized for LLM ingestion.
+- [Index Page Markdown Mirror](https://jireh.studio/index.md) - Exact mirror of the homepage structure and copy in markdown.
+
+## Core Navigation Links
+- [Services](https://jireh.studio/#services) - Our expertises in web engineering, UI/UX design, revenue marketing, and workflow AI.
+- [Work](https://jireh.studio/#work) - Case studies and details about our selected digital platforms.
+- [Process](https://jireh.studio/#process) - Our four-stage delivery system (Discovery, Strategy, Build, Launch).
+- [Testimonials](https://jireh.studio/#testimonials) - Metrics and feedback from our clients.
+- [Contact](https://jireh.studio/#contact) - Start a project or request a discovery proposal.

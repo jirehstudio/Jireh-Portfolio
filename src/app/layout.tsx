@@ -46,12 +46,21 @@ export const metadata: Metadata = {
       "Your partner in web development, integrated marketing, and intelligent AI and automation.",
     siteName: "Jireh Studio",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Jireh Studio Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jireh Studio | Crafting Digital Excellence",
     description:
       "Your partner in web development, integrated marketing, and intelligent AI and automation.",
+    images: ["/og-image.png"],
   },
 };
 

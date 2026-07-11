@@ -7,15 +7,16 @@ import { Reveal } from "@/components/ui/reveal";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", company: "", message: "", botField: "" });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formElement = e.currentTarget;
-    fetch("/__forms.html", {
+    setSubmitting(true);
+    fetch("/api/contact", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(new FormData(formElement) as any).toString(),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
     })
       .then((res) => {
         if (res.ok) {
@@ -28,6 +29,9 @@ export function Contact() {
       .catch((error) => {
         console.error("Form submission error:", error);
         setSubmitted(true);
+      })
+      .finally(() => {
+        setSubmitting(false);
       });
   };
 
@@ -84,7 +88,7 @@ export function Contact() {
                   <button
                     onClick={() => {
                       setSubmitted(false);
-                      setForm({ name: "", email: "", company: "", message: "" });
+                      setForm({ name: "", email: "", company: "", message: "", botField: "" });
                     }}
                     className="btn-ghost mt-6"
                   >
@@ -93,17 +97,19 @@ export function Contact() {
                 </div>
               ) : (
                 <form
-                  name="contact"
                   onSubmit={onSubmit}
                   className="space-y-5"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
                 >
-                  <input type="hidden" name="form-name" value="contact" />
                   <p className="hidden" aria-hidden="true">
                     <label>
                       Don't fill this out if you're human:{" "}
-                      <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                      <input
+                        name="botField"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={form.botField}
+                        onChange={(e) => setForm({ ...form, botField: e.target.value })}
+                      />
                     </label>
                   </p>
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -153,8 +159,13 @@ export function Contact() {
                       By submitting, you agree to be contacted about your project.
                       We never share your information.
                     </p>
-                    <button type="submit" className="btn-primary whitespace-nowrap">
-                      Submit brief <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="btn-primary whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {submitting ? "Submitting..." : "Submit brief"}{" "}
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </button>
                   </div>
                 </form>

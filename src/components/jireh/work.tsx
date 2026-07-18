@@ -6,6 +6,7 @@ import {
   Globe,
   Plane,
   ArrowUpRight,
+  MapPin,
 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
@@ -13,6 +14,7 @@ const WORK = [
   {
     tag: "International Art Gallery",
     project: "Matti Sirvio Art Galleria",
+    location: "Muscat, Oman",
     accent: "cyan" as "cyan" | "coral",
     icon: Globe,
     summary:
@@ -26,6 +28,7 @@ const WORK = [
   {
     tag: "Destination Agency",
     project: "Sunzee Travel",
+    location: "Mauritius",
     accent: "cyan" as "cyan" | "coral",
     icon: Plane,
     summary:
@@ -110,9 +113,15 @@ export function Work() {
                 {/* Body */}
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-display text-xl font-semibold text-white">
-                      {w.project}
-                    </h3>
+                    <div>
+                      <h3 className="font-display text-xl font-semibold text-white">
+                        {w.project}
+                      </h3>
+                      <div className="mt-1 flex items-center gap-1.5 text-xs text-mist">
+                        <MapPin className="h-3.5 w-3.5 opacity-70" aria-hidden="true" />
+                        {w.location}
+                      </div>
+                    </div>
                     <div className="text-right">
                       <div
                         className={`font-display text-2xl font-semibold ${

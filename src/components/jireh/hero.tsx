@@ -522,14 +522,13 @@ function HeroVisual() {
           arcsAdded = true;
         }
 
-        // Initialize unique materials for each country once they are loaded in ThreeJS
+        // Initialize unique materials for each country once they are fully loaded in ThreeJS
         if (!countriesInitialized && arcsAdded) {
-          let count = 0;
           Globe.traverse((obj: any) => {
             if (obj.__globeObjType === "polygon") {
               const countryName = obj.__data?.properties?.ADMIN;
-              if (countryName) {
-                const entry = countryMeshes.get(countryName) || { cap: [], stroke: [] };
+              if (countryName && !countryMeshes.has(countryName)) {
+                const entry = { cap: [] as any[], stroke: [] as any[] };
                 
                 obj.traverse((child: any) => {
                   if (child.isMesh) {
@@ -547,13 +546,16 @@ function HeroVisual() {
                   }
                 });
                 
-                countryMeshes.set(countryName, entry);
-                count++;
+                if (entry.cap.length > 0 || entry.stroke.length > 0) {
+                  countryMeshes.set(countryName, entry);
+                }
               }
             }
           });
-          if (count > 0) {
+          
+          if (countryMeshes.size >= 150) {
             countriesInitialized = true;
+            console.log("Cached unique materials for all", countryMeshes.size, "countries.");
           }
         }
 

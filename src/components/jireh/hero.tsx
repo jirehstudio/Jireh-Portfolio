@@ -201,7 +201,7 @@ function HeroVisual() {
         { lat: 1.3521, lng: 103.8198, name: "Singapore", color: "#00f5d4" },
         { lat: 22.3193, lng: 114.1694, name: "Hong Kong", color: "#3a86ff" },
         { lat: -33.9249, lng: 18.4241, name: "Cape Town", color: "#00f5d4" },
-        { lat: 51.5074, lng: -0.1278, name: "London, UK", project: "Global FinTech", color: "#3a86ff" },
+        { lat: 51.5074, lng: -0.1278, name: "London, UK", color: "#3a86ff" },
         { lat: 48.8566, lng: 2.3522, name: "Paris", color: "#00f5d4" },
         { lat: 52.5200, lng: 13.4050, name: "Berlin", color: "#3a86ff" },
         { lat: 40.7128, lng: -74.0060, name: "New York", color: "#00f5d4" },

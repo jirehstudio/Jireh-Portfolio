@@ -186,11 +186,6 @@ function HeroVisual() {
       containerElement = containerRef.current;
       const container = containerElement;
       let currentHighlightsStr = "";
-      let countriesInitialized = false;
-      const countryMeshes = new Map<string, { cap: any[], stroke: any[] }>();
-      let prevHighlights: string[] = [];
-      let prevCount = 0;
-      let stableFrames = 0;
 
 
       // Strategic global hub cities (exact coordinates)
@@ -389,8 +384,15 @@ function HeroVisual() {
             return { el, data: d, pos: new THREE.Vector3(), isCard: !!d.project };
           });
 
+          // Filter polygons to only the active hub countries for extreme rendering performance
+          const hubCountryNames = new Set(Object.values(HUB_COUNTRY_MAPPING));
+          const activeHubFeatures = countries.features.filter((f: any) => {
+            const admin = f.properties?.ADMIN;
+            return admin && hubCountryNames.has(admin);
+          });
+
           // Glowing continent/country borders via the polygons layer
-          Globe.polygonsData(countries.features)
+          Globe.polygonsData(activeHubFeatures)
             .polygonCapColor(() => "rgba(0,0,0,0)")        // Fully transparent cap
             .polygonSideColor(() => "rgba(0,0,0,0)")       // Fully transparent sides
             .polygonStrokeColor(() => "rgba(0, 245, 212, 0.22)")  // Dim cyan border by default
@@ -524,52 +526,8 @@ function HeroVisual() {
           arcsAdded = true;
         }
 
-        // Initialize unique materials for each country once they are fully loaded in ThreeJS
-        if (!countriesInitialized && arcsAdded) {
-          Globe.traverse((obj: any) => {
-            if (obj.__globeObjType === "polygon") {
-              const countryName = obj.__data?.properties?.ADMIN;
-              if (countryName && !countryMeshes.has(countryName)) {
-                const entry = { cap: [] as any[], stroke: [] as any[] };
-                
-                obj.traverse((child: any) => {
-                  if (child.isMesh) {
-                    if (child.material && !child.material.__isCloned) {
-                      child.material = child.material.clone();
-                      child.material.__isCloned = true;
-                    }
-                    entry.cap.push(child);
-                  } else if (child.isLine || child.isLineSegments) {
-                    if (child.material && !child.material.__isCloned) {
-                      child.material = child.material.clone();
-                      child.material.__isCloned = true;
-                    }
-                    entry.stroke.push(child);
-                  }
-                });
-                
-                if (entry.cap.length > 0 || entry.stroke.length > 0) {
-                  countryMeshes.set(countryName, entry);
-                }
-              }
-            }
-          });
-          
-          const currentCount = countryMeshes.size;
-          if (currentCount > 0 && currentCount === prevCount) {
-            stableFrames++;
-            if (stableFrames > 60) { // Stable for 60 frames (~1 second)
-              countriesInitialized = true;
-              console.log("Cached unique materials for all", countryMeshes.size, "countries.");
-            }
-          } else {
-            stableFrames = 0;
-            prevCount = currentCount;
-          }
-        }
-
         // Dynamic country highlighting based on active connection pulses
-        if (countriesInitialized && arcsAdded) {
+        if (arcsAdded) {
           const elapsedSec = (now - startTime) * 0.001;
           const animateTimeSec = 3.0; // matching arcDashAnimateTime(3000)
           const activeHighlights = new Set<string>();
@@ -592,45 +550,21 @@ function HeroVisual() {
           if (highlightsStr !== currentHighlightsStr) {
             currentHighlightsStr = highlightsStr;
 
-            // Reset previous highlights to dim
-            prevHighlights.forEach((country) => {
-              const meshes = countryMeshes.get(country);
-              if (meshes) {
-                meshes.cap.forEach((mesh) => {
-                  if (mesh.material) {
-                    mesh.material.color.set("#000000");
-                    mesh.material.opacity = 0.0;
-                  }
-                });
-                meshes.stroke.forEach((line) => {
-                  if (line.material) {
-                    line.material.color.set("#00f5d4");
-                    line.material.opacity = 0.22;
-                  }
-                });
+            Globe.polygonCapColor((d: any) => {
+              const countryName = d.properties?.ADMIN;
+              if (activeHighlights.has(countryName)) {
+                return "rgba(0, 245, 212, 0.25)"; // glowing cap
               }
+              return "rgba(0, 0, 0, 0)"; // transparent cap
             });
 
-            // Set new highlights to bright glowing cyan
-            activeHighlights.forEach((country) => {
-              const meshes = countryMeshes.get(country);
-              if (meshes) {
-                meshes.cap.forEach((mesh) => {
-                  if (mesh.material) {
-                    mesh.material.color.set("#00f5d4");
-                    mesh.material.opacity = 0.25;
-                  }
-                });
-                meshes.stroke.forEach((line) => {
-                  if (line.material) {
-                    line.material.color.set("#00f5d4");
-                    line.material.opacity = 1.0;
-                  }
-                });
+            Globe.polygonStrokeColor((d: any) => {
+              const countryName = d.properties?.ADMIN;
+              if (activeHighlights.has(countryName)) {
+                return "rgba(0, 245, 212, 1.0)"; // bright border glow
               }
+              return "rgba(0, 245, 212, 0.22)"; // default dim border
             });
-
-            prevHighlights = Array.from(activeHighlights);
           }
         }
 

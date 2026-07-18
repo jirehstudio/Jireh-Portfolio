@@ -189,6 +189,8 @@ function HeroVisual() {
       let countriesInitialized = false;
       const countryMeshes = new Map<string, { cap: any[], stroke: any[] }>();
       let prevHighlights: string[] = [];
+      let prevCount = 0;
+      let stableFrames = 0;
 
 
       // Strategic global hub cities (exact coordinates)
@@ -553,9 +555,16 @@ function HeroVisual() {
             }
           });
           
-          if (countryMeshes.size >= 150) {
-            countriesInitialized = true;
-            console.log("Cached unique materials for all", countryMeshes.size, "countries.");
+          const currentCount = countryMeshes.size;
+          if (currentCount > 0 && currentCount === prevCount) {
+            stableFrames++;
+            if (stableFrames > 60) { // Stable for 60 frames (~1 second)
+              countriesInitialized = true;
+              console.log("Cached unique materials for all", countryMeshes.size, "countries.");
+            }
+          } else {
+            stableFrames = 0;
+            prevCount = currentCount;
           }
         }
 
